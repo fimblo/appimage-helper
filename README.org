@@ -1,0 +1,2 @@
+* appimage-helper
+tool to easily run appimages
