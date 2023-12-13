@@ -16,6 +16,7 @@ A tool to easily run and manage AppImages
   logs dumped to stdout/stderr ugly
 
 ** How to use appimage-helper
+*** Running an Appimage
 
 =appimage-helper.sh= looks at how it was called and starts the correct
 AppImage.
@@ -23,16 +24,7 @@ AppImage.
 Say you have an AppImage, whose filename is
 =CoolProgram-1.14.2.AppImage=. After installing it, you can run it
 from your terminal by running =coolprogram=.
-
-** Installing appimage-helper
-
-Download this repository, cd into it, then run =run-me-first-setup.sh=. Note
-that it will prepend =~/.local/bin= to your PATH in =.bashrc=.
-
-** Installing an AppImage
-
-After you have installed =appimage-helper=, you might want to install
-an AppImage.
+*** Installing an Appimage
 
 Let's say you've just downloaded an AppImage to your =~/Downloads=
 directory. To install it, run =install-appimage.sh= with the path to
@@ -42,10 +34,31 @@ the AppImage as parameter.
   $ install-appimage.sh ~/Downloads/CoolProgram-1.14.2.AppImage
   Moved /home/fimblo/Downloads/CoolProgram-1.14.2.AppImage to /home/fimblo/.local/share/appimages
   Created symlink in /home/fimblo/.local/bin for coolprogram
+  $
 #+end_src
 
+*** Listing installed AppImages
 
+#+begin_src shell
+  $ install-appimage.sh -l
+  cursor      ->  cursor-0.18.8-build-2312098ffjr3ign.AppImage
+  chrysalis   ->  chrysalis-0.12.0.appimage
+  coolprogram ->  CoolProgram-1.14.8.AppImage
+  $
+#+end_src
 
+*** Uninstalling an AppImage
 
+#+begin_src shell
+  $ install-appimage.sh -u coolprogram
+  Removed '/home/fimblo/.local/share/appimages//home/fimblo/.local/share/appimages/CoolProgram-1.14.8.AppImage'
+  Removed symlink in '/home/fimblo/.local/bin' for 'CoolProgram'
+  $
+#+end_src
+
+** Installing appimage-helper
+
+Download this repository, cd into it, then run =./run-me-first-setup.sh=. Note
+that it will prepend =~/.local/bin= to your PATH in =.bashrc=.
 
 
