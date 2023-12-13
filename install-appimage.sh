@@ -2,6 +2,9 @@
 APPIMAGE_DIR="$HOME/.local/share/appimages"
 BIN_DIR="$HOME/.local/bin"
 
+tmpfile=$(mktemp)
+trap 'rm -f $tmpfile' 0
+
 install_appimage() {
   file_path=$1
 
@@ -44,20 +47,28 @@ uninstall_appimage() {
   echo "Removed symlink in '$BIN_DIR' for '$app_shortname'"
 }
 
-
+list_appimages() {
+  for shortname in $(find "$BIN_DIR" -lname '*appimage-helper.sh' -type l -exec basename {} \;) ; do
+    appimage=$(ls $APPIMAGE_DIR | grep -i $shortname | sort -V | tail -1)
+    echo "${shortname} -> ${appimage}" >> $tmpfile
+  done
+  column -t $tmpfile
+  
+}
 
 # Main script
 if [ "$#" -lt 1 ]; then
   ME=$(basename "$0")
   cat<<-EOF
 	Usage:
+      List all appimages     $ME -l
 	  Install an appimage:   $ME <path-to-appimage>
 	  Uninstall an appimage: $ME -u <appimage-shortname>
 	EOF
   exit 1
 fi
 
-if [ "$1" == "-u" ]; then
+if [ "$1" == "-u" ] ; then
   app_shortname="$2"
   if [[ -e $HOME/.local/bin/$app_shortname ]] ; then
     uninstall_appimage "$app_shortname"
@@ -65,6 +76,8 @@ if [ "$1" == "-u" ]; then
     echo "AppImage with shortname '$app_shortname' not found."
     exit 1
   fi
+elif [ "$1" == "-l" ] ; then
+  list_appimages
 else
   install_appimage "$1"
 fi
