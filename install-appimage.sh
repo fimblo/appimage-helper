@@ -40,10 +40,10 @@ uninstall_appimage() {
   fi
 
   for appimage in $files ; do
-    echo rm -f "$APPIMAGE_DIR/$appimage"
+    rm -f "$APPIMAGE_DIR/$appimage"
     echo "Removed '$APPIMAGE_DIR/$appimage'"
   done
-  echo rm -f "$BIN_DIR/$app_shortname"
+  rm -f "$BIN_DIR/$app_shortname"
   echo "Removed symlink in '$BIN_DIR' for '$app_shortname'"
 }
 
