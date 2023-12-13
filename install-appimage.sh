@@ -33,6 +33,11 @@ uninstall_appimage() {
   # initial version: delete all versions of the appimage
   files=$(find $APPIMAGE_DIR -type f -iname '${app_shortname}*.appimage')
 
+  if [[ ! $files ]]; then
+    echo "No AppImage with shortname '$app_shortname' exists."
+    exit 1
+  fi
+
   for appimage in $files ; do
     echo rm -f "$APPIMAGE_DIR/$appimage"
     echo "Removed '$APPIMAGE_DIR/$appimage'"
