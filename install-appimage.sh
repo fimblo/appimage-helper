@@ -39,9 +39,9 @@ uninstall_appimage() {
     exit 1
   fi
 
-  for appimage in $files ; do
-    rm -f "$APPIMAGE_DIR/$appimage"
-    echo "Removed '$APPIMAGE_DIR/$appimage'"
+  for appimage_path in $files ; do
+    rm -f "$appimage_path"
+    echo "Removed '$appimage_path'"
   done
   rm -f "$BIN_DIR/$app_shortname"
   echo "Removed symlink in '$BIN_DIR' for '$app_shortname'"
