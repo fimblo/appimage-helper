@@ -51,8 +51,8 @@ the AppImage as parameter.
 
 #+begin_src shell
   $ install-appimage.sh -u coolprogram
-  Removed '/home/fimblo/.local/share/appimages//home/fimblo/.local/share/appimages/CoolProgram-1.14.8.AppImage'
-  Removed symlink in '/home/fimblo/.local/bin' for 'CoolProgram'
+  Removed '/home/fimblo/.local/share/appimages/CoolProgram-1.14.8.AppImage'
+  Removed symlink in '/home/fimblo/.local/bin' for 'coolprogram'
   $
 #+end_src
 
