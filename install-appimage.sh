@@ -14,14 +14,12 @@ install_appimage() {
   # This is the short name of the AppImage
   app_shortname=${BASH_REMATCH[1]}
 
-  # Create directories if they don't exist
+  # Move the AppImage
   mkdir -p "$APPIMAGE_DIR" "$BIN_DIR"
-
-  # Move the file
   mv "$file_path" "$APPIMAGE_DIR/"
   echo "Moved '$file_path' to '$APPIMAGE_DIR'"
 
-  # Create symlink to helper
+  # Create symlink to shortname
   ln -sf "$BIN_DIR/appimage-helper.sh" "$BIN_DIR/$app_shortname"
   echo "Created symlink in '$BIN_DIR' for '$app_shortname'"
 
