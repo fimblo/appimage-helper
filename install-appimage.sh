@@ -1,5 +1,5 @@
 #!/bin/bash
-DEST_DIR="$HOME/.local/share/appimages"
+APPIMAGE_DIR="$HOME/.local/share/appimages"
 BIN_DIR="$HOME/.local/bin"
 
 install_appimage() {
@@ -15,11 +15,11 @@ install_appimage() {
   app_shortname=${BASH_REMATCH[1]}
 
   # Create directories if they don't exist
-  mkdir -p "$DEST_DIR" "$BIN_DIR"
+  mkdir -p "$APPIMAGE_DIR" "$BIN_DIR"
 
   # Move the file
-  mv "$file_path" "$DEST_DIR/"
-  echo "Moved '$file_path' to '$DEST_DIR'"
+  mv "$file_path" "$APPIMAGE_DIR/"
+  echo "Moved '$file_path' to '$APPIMAGE_DIR'"
 
   # Create symlink to helper
   ln -sf "$BIN_DIR/appimage-helper.sh" "$BIN_DIR/$app_shortname"
@@ -30,8 +30,8 @@ install_appimage() {
 uninstall_appimage() {
   app_shortname=$1
 
-  rm -f "$DEST_DIR/$APP_NAME.appimage"
-  echo "Removed '$DEST_DIR/$APP_NAME.appimage'"
+  rm -f "$APPIMAGE_DIR/$APP_NAME.appimage"
+  echo "Removed '$APPIMAGE_DIR/$APP_NAME.appimage'"
 
   rm -f "$BIN_DIR/$app_shortname"
   echo "Removed symlink in '$BIN_DIR' for '$app_shortname'"
