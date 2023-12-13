@@ -15,7 +15,7 @@ install_appimage() {
   fi
 
   # This is the short name of the AppImage
-  app_shortname=${BASH_REMATCH[1]}
+  app_shortname=$( echo ${BASH_REMATCH[1]} | tr 'A-Z' 'a-z')
 
   # Move the AppImage
   mkdir -p "$APPIMAGE_DIR" "$BIN_DIR"
