@@ -3,7 +3,7 @@ DEST_DIR="$HOME/.local/share/appimages"
 BIN_DIR="$HOME/.local/bin"
 
 install_appimage() {
-  FILE_PATH=$1
+  file_path=$1
 
   shopt -s nocasematch
   if [[ ! $(basename $1) =~ ^([a-zA-Z]+).*.appimage$ ]]; then
@@ -12,29 +12,29 @@ install_appimage() {
   fi
 
   # This is the short name of the AppImage
-  APP_NAME=${BASH_REMATCH[1]}
+  app_shortname=${BASH_REMATCH[1]}
 
   # Create directories if they don't exist
   mkdir -p "$DEST_DIR" "$BIN_DIR"
 
   # Move the file
-  mv "$FILE_PATH" "$DEST_DIR/"
-  echo "Moved $FILE_PATH to $DEST_DIR"
+  mv "$file_path" "$DEST_DIR/"
+  echo "Moved '$file_path' to '$DEST_DIR'"
 
   # Create symlink to helper
-  ln -sf "$BIN_DIR/appimage-helper.sh" "$BIN_DIR/$APP_NAME"
-  echo "Created symlink in $BIN_DIR for $APP_NAME"
+  ln -sf "$BIN_DIR/appimage-helper.sh" "$BIN_DIR/$app_shortname"
+  echo "Created symlink in '$BIN_DIR' for '$app_shortname'"
 
 }
 
 uninstall_appimage() {
-  APP_NAME=$1
+  app_shortname=$1
 
   rm -f "$DEST_DIR/$APP_NAME.appimage"
-  echo "Removed $DEST_DIR/$APP_NAME.appimage"
+  echo "Removed '$DEST_DIR/$APP_NAME.appimage'"
 
-  rm -f "$BIN_DIR/$APP_NAME"
-  echo "Removed symlink in $BIN_DIR for $APP_NAME"
+  rm -f "$BIN_DIR/$app_shortname"
+  echo "Removed symlink in '$BIN_DIR' for '$app_shortname'"
 }
 
 
@@ -51,11 +51,11 @@ if [ "$#" -lt 1 ]; then
 fi
 
 if [ "$1" == "-u" ]; then
-  APP_NAME="$2"
-  if [[ -e $HOME/.local/bin/$APP_NAME ]] ; then
-    uninstall_appimage "$APP_NAME"
+  app_shortname="$2"
+  if [[ -e $HOME/.local/bin/$app_shortname ]] ; then
+    uninstall_appimage "$app_shortname"
   else
-    echo "AppImage with shortname '$APP_NAME' not found."
+    echo "AppImage with shortname '$app_shortname' not found."
     exit 1
   fi
 else
