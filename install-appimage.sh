@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# Enable case-insensitive matching
-shopt -s nocasematch
 
 # Check if an argument is provided
 if [ "$#" -ne 1 ]; then
@@ -13,6 +11,7 @@ FILE_PATH=$1
 DEST_DIR="$HOME/.local/share/appimages"
 BIN_DIR="$HOME/.local/bin"
 
+shopt -s nocasematch
 if [[ ! $(basename $1) =~ ^([a-zA-Z]+).*.appimage$ ]]; then
     echo "File does not match expected pattern"
     exit 1
