@@ -19,7 +19,6 @@ if [[ ! $(basename $1) =~ ^([a-zA-Z]+).*.appimage$ ]]; then
 fi
 
 APP_NAME=${BASH_REMATCH[1]}
-echo $APP_NAME
 
 # Create directories if they don't exist
 mkdir -p "$DEST_DIR" "$BIN_DIR"
