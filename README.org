@@ -1,11 +1,51 @@
 * appimage-helper
-tool to easily run and manage appimages
+
+A tool to easily run and manage AppImages
+
 ** Problems I want to solve
+
 *** I want to organise AppImages in one place
 - Given there's no standard place to store AppImages
-- When I want to find my AppImages
+- When I want to find my downloaded AppImages
 - Then I don't know where to look
 *** I want AppImages to work smoothly in a terminal
-- Given AppImages are designed to be executed from a WindowManager or DesktopEnvironment
-- When I start the AppImage from the commandline
-- Then the program does not start in the background, and I find the logs dumped to stdout/stderr ugly
+- Given AppImages are designed to be executed from a Window Manager or
+  Desktop Environment
+- When I start the AppImage from the command-line
+- Then the program does not fork into the background, and I find the
+  logs dumped to stdout/stderr ugly
+
+** How to use appimage-helper
+
+=appimage-helper.sh= looks at how it was called and starts the correct
+AppImage.
+
+Say you have an AppImage, whose filename is
+=CoolProgram-1.14.2.AppImage=. After installing it, you can run it
+from your terminal by running =coolprogram=.
+
+** Installing appimage-helper
+
+Download this repository, cd into it, then run =run-me-first-setup.sh=. Note
+that it will prepend =~/.local/bin= to your PATH in =.bashrc=.
+
+** Installing an AppImage
+
+After you have installed =appimage-helper=, you might want to install
+an AppImage.
+
+Let's say you've just downloaded an AppImage to your =~/Downloads=
+directory. To install it, run =install-appimage.sh= with the path to
+the AppImage as parameter.
+
+#+begin_src shell
+  $ install-appimage.sh ~/Downloads/CoolProgram-1.14.2.AppImage
+  Moved /home/fimblo/Downloads/CoolProgram-1.14.2.AppImage to /home/fimblo/.local/share/appimages
+  Created symlink in /home/fimblo/.local/bin for coolprogram
+#+end_src
+
+
+
+
+
+
