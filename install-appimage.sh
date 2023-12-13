@@ -6,7 +6,7 @@ install_appimage() {
   file_path=$1
 
   shopt -s nocasematch
-  if [[ ! $(basename $1) =~ ^([a-zA-Z]+).*.appimage$ ]]; then
+  if [[ ! $(basename "$1") =~ ^([a-zA-Z]+).*.appimage$ ]]; then
     echo "File does not match expected pattern"
     exit 1
   fi
@@ -31,7 +31,7 @@ uninstall_appimage() {
   app_shortname=$1
 
   # initial version: delete all versions of the appimage
-  files=$(find $APPIMAGE_DIR -type f -iname '${app_shortname}*.appimage')
+  files=$(find "$APPIMAGE_DIR" -type f -iname "${app_shortname}*.appimage")
 
   if [[ ! $files ]]; then
     echo "No AppImage with shortname '$app_shortname' exists."
@@ -50,7 +50,7 @@ uninstall_appimage() {
 
 # Main script
 if [ "$#" -lt 1 ]; then
-  ME=$(basename $0)
+  ME=$(basename "$0")
   cat<<-EOF
 	Usage:
 	  Install an appimage:   $ME <path-to-appimage>
