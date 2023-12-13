@@ -30,10 +30,14 @@ install_appimage() {
 uninstall_appimage() {
   app_shortname=$1
 
-  rm -f "$APPIMAGE_DIR/$APP_NAME.appimage"
-  echo "Removed '$APPIMAGE_DIR/$APP_NAME.appimage'"
+  # initial version: delete all versions of the appimage
+  files=$(find $APPIMAGE_DIR -type f -iname '${app_shortname}*.appimage')
 
-  rm -f "$BIN_DIR/$app_shortname"
+  for appimage in $files ; do
+    echo rm -f "$APPIMAGE_DIR/$appimage"
+    echo "Removed '$APPIMAGE_DIR/$appimage'"
+  done
+  echo rm -f "$BIN_DIR/$app_shortname"
   echo "Removed symlink in '$BIN_DIR' for '$app_shortname'"
 }
 
