@@ -1,6 +1,6 @@
 #!/bin/bash
 
-app_short_name=$(basename $0)
+app_short_name=$(basename "$0")
 if [[ "$app_short_name" == 'appimage-helper.sh' ]] ; then
   cat<<-EOF
 	This script is not meant to run directly as 'appimage-helper.sh'.
@@ -13,20 +13,20 @@ fi
 
 appimage_dir="$HOME/.local/share/appimages"
 appimage=$(
-  find $appimage_dir \
+  find "$appimage_dir" \
        -type f \
        -name "${app_short_name}-*.AppImage" |\
     sort -V |\
     tail -1)
 
-if [[ ! -e $appimage ]] ; then
+if [[ ! -e "$appimage" ]] ; then
   cat<<-EOF
 	No AppImage with name starting with '${app_short_name}' was found in
 	directory: ${appimage_dir}
 	EOF
 fi
 
-if [[ ! -x $appimage ]] ; then
+if [[ ! -x "$appimage" ]] ; then
   cat<<-EOF
 	The AppImage: '${appimage}' is not executable.
 	Set exec bit? [y/n]
@@ -37,7 +37,7 @@ if [[ ! -x $appimage ]] ; then
     exit 1
   fi
   echo "Setting exec bit."
-  chmod u+x ${appimage}
+  chmod u+x "${appimage}"
 fi
 
 
