@@ -6,7 +6,7 @@ install_appimage() {
   file_path=$1
 
   shopt -s nocasematch
-  if [[ ! $(basename "$1") =~ ^([a-zA-Z]+).*.appimage$ ]]; then
+  if [[ ! $(basename "$1") =~ ^([a-zA-Z0-9]+).*.appimage$ ]]; then
     echo "File does not match expected pattern"
     exit 1
   fi
