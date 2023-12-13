@@ -1,2 +1,11 @@
 * appimage-helper
-tool to easily run appimages
+tool to easily run and manage appimages
+** Problems I want to solve
+*** I want to organise AppImages in one place
+- Given there's no standard place to store AppImages
+- When I want to find my AppImages
+- Then I don't know where to look
+*** I want AppImages to work smoothly in a terminal
+- Given AppImages are designed to be executed from a WindowManager or DesktopEnvironment
+- When I start the AppImage from the commandline
+- Then the program does not start in the background, and I find the logs dumped to stdout/stderr ugly
